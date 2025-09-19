@@ -23,6 +23,7 @@ export const applyMiddlewares = (app) => {
   app.use(limiter);
 
   
+  app.set('trust proxy', 1);
   app.use(session({
   secret: process.env.SESSION_SECRET, 
   resave: false,
@@ -35,8 +36,8 @@ export const applyMiddlewares = (app) => {
   cookie: {
     maxAge: 1000 * 60 * 10, 
     httpOnly: true,
-    sameSite: 'lax',
-    secure: false 
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   }
 }));
 
