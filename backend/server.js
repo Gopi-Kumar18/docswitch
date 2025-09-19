@@ -25,9 +25,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 
 
-app.listen(PORT, () => {
-  console.log(`🚀 Backend server running on http://localhost:${PORT}\n`);
-});
+app.listen(PORT, () => {console.log("🚀 Backend server sucessfully running")});
+  // console.log(`🚀 Backend server running on http://localhost:${PORT}\n`);
+
 
 
 
