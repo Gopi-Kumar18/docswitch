@@ -91,7 +91,7 @@ router.post('/forgot-password', async (req, res) => {
       return res.json({ message: 'Reset token generated (no email sent).' });
     }
 
-    const resetUrl = `${process.env.CLIENT_ORIGIN}/reset-password/${token}`;
+    const resetUrl = `${process.env.SECURE_CLIENT_ORIGIN}/reset-password/${token}`;
     const mailOptions = {
       from: `"DocSwitch Support" <${process.env.EMAIL_USER}>`,
       to: user.email,
