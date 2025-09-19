@@ -1,17 +1,7 @@
 
 import {
-  fs,
-  path,
-  crypto,
-  dotenv,
-  fileTypeFromFile,
-  promisify,
-  FileToken,
-  generateToken,
-  gfsProcessed,
-  allowedMimes,
-  multer
-} from '../utils/coreModules.js';
+  fs, path, crypto, dotenv, fileTypeFromFile, promisify, FileToken, generateToken, gfsProcessed, allowedMimes, multer 
+   } from '../utils/coreModules.js';
 
 import ILovePDFApi from '@ilovepdf/ilovepdf-nodejs/index.js';
 import ILovePDFFile from '@ilovepdf/ilovepdf-nodejs/ILovePDFFile.js';
@@ -180,7 +170,7 @@ export const iloveWatermark = async (req, res) => {
     await FileToken.create({
       token,
       fileId: uploadStream.id,
-      expiresAt: new Date(Date.now() + 15 * 60 * 1000) // 15 minutes
+      expiresAt: new Date(Date.now() + 60 * 60 * 1000) 
     });
 
     if (pdfPath) await unlinkAsync(pdfPath).catch(()=>{});

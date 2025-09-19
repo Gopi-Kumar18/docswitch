@@ -1,16 +1,6 @@
 
 import {
-  fs,
-  path,
-  crypto,
-  dotenv,
-  fileTypeFromFile,
-  promisify,
-  FileToken,
-  generateToken,
-  gfsProcessed,
-  allowedMimes,
-  PDFDocument
+  fs, path, crypto, dotenv, fileTypeFromFile, promisify, FileToken, generateToken, gfsProcessed, allowedMimes, PDFDocument
 } from '../utils/coreModules.js';
 
 dotenv.config();
@@ -25,7 +15,6 @@ export const sealPdf = async (req, res) => {
     pdfPath = req.files.file[0].path;
     imgPath = req.files.sealImage[0].path;
 
-    // Validate PDF MIME
     const info = await fileTypeFromFile(pdfPath);
     if (!info || !allowedMimes.pdfOnly.includes(info.mime)) {
       await unlinkAsync(pdfPath).catch(()=>{});
@@ -33,7 +22,6 @@ export const sealPdf = async (req, res) => {
       return res.status(400).json({ error: 'Only PDFs allowed.' });
     }
 
-    // coords parsing
     const coordsRaw = (req.body.coords || '').split(',').map(v => parseFloat(v));
     const [xPct = 0.1, yPct = 0.8, wPct = 0.18, hPct = 0] = coordsRaw;
     const pageNumber = Math.max(1, parseInt(req.body.pageNumber || '1', 10));
@@ -86,7 +74,7 @@ export const sealPdf = async (req, res) => {
     await FileToken.create({
       token,
       fileId: uploadStream.id,
-      expiresAt: new Date(Date.now() + 15 * 60 * 1000)
+      expiresAt: new Date(Date.now() + 60 * 60 * 1000)
     });
 
     await unlinkAsync(pdfPath).catch(()=>{});

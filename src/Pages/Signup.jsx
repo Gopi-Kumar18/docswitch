@@ -4,9 +4,9 @@ import useAuth from '../hooks/useAuth';
 import "../Styles/Signup.css";
 import floatingIcons from '../constants/FloatingIcons';
 
-const nameRegex     = /^[A-Za-z ]{1,25}$/;
+const nameRegex     = /^[A-Za-z0-9 ]{1,25}$/;
 const emailRegex    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$/;
 
 const Signup = () => {
   const [name,    setName]     = useState('');
@@ -32,7 +32,7 @@ const Signup = () => {
     }
     if (!passwordRegex.test(pw)) {
       return setError(
-        'Password must be ≥8 chars, include 1 uppercase, 1 digit & 1 special.'
+        'Password must be ≥6 chars, include 1 uppercase, 1 digit & 1 special.'
       );
     }
 

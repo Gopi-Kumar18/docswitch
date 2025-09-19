@@ -147,7 +147,7 @@ const createConverter = (outputFormat) => {
       await FileToken.create({
         token,
         fileId: uploadStream.id,
-        expiresAt: new Date(Date.now() + 5 * 1000),
+        expiresAt: new Date(Date.now() + 60 * 60 * 1000),
       });
 
       // 11. Cleanup

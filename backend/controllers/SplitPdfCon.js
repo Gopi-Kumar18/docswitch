@@ -77,7 +77,7 @@ export const splitPdf = async (req, res) => {
       await FileToken.create({
         token,
         fileId:    uploadStream.id,
-        expiresAt: new Date(Date.now() + 30 * 1000)
+        expiresAt: new Date(Date.now() + 60 * 60 * 1000)
       });
 
       outputParts.push({ fileName: partName, token });

@@ -86,7 +86,7 @@ export const convertFile = async (req, res) => {
     await FileToken.create({
       token,
       fileId: processedStream.id,
-      expiresAt: new Date(Date.now() + 5 * 1000)
+      expiresAt: new Date(Date.now() + 60 * 60 * 1000)
     });
 
     // 10. Clean up the original upload from disk
