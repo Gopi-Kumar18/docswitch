@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DragDropFile from '../otherComponents/DragDropFile.jsx';
-
 import '../Styles/Main-1.css';
 
 const SplitPDF = () => {
@@ -10,6 +9,7 @@ const SplitPDF = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [parts, setParts] = useState([]);
+  const [zipInfo, setZipInfo] = useState(null);
   const navigate = useNavigate();
 
   const maxFileSize = 20 * 1024 * 1024; 
@@ -22,6 +22,7 @@ const SplitPDF = () => {
     setIsLoading(true);
     setErrorMessage('');
     setParts([]);
+    setZipInfo(null);
 
     try {
       const formData = new FormData();
@@ -33,16 +34,52 @@ const SplitPDF = () => {
         body: formData,
       });
 
+      const contentType = res.headers.get('content-type') || '';
       if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || 'Split failed');
+        let errText = 'Split failed';
+        try {
+          if (contentType.includes('application/json')) {
+            const errJson = await res.json();
+            errText = errJson.error || JSON.stringify(errJson);
+          } else {
+            errText = await res.text();
+          }
+        } catch (_) {
+          errText = `${res.status} ${res.statusText}`;
+        }
+        throw new Error(errText);
       }
 
-      const result = await res.json();
-      if (result.success && Array.isArray(result.parts)) {
-        setParts(result.parts);
+      if (contentType.includes('application/json')) {
+        const result = await res.json();
+
+        if (result.success) {
+          if (Array.isArray(result.parts) && result.parts.length > 0) {
+            setParts(result.parts);
+          }
+          if (result.zip && result.zip.token) {
+            setZipInfo(result.zip);
+          }
+          if (!Array.isArray(result.parts) && !result.zip) {
+            throw new Error('Unexpected server response: no parts or zip provided');
+          }
+        } else {
+          throw new Error(result.error || 'Split failed');
+        }
       } else {
-        throw new Error('Unexpected server response');
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const disposition = res.headers.get('content-disposition') || '';
+        let filename = 'split_result';
+        const m = disposition.match(/filename="?(.+?)"?($|;)/);
+        if (m) filename = m[1];
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
       }
     } catch (err) {
       console.error('Split error:', err);
@@ -102,6 +139,17 @@ const SplitPDF = () => {
           )}
         </div>
       </div>
+
+      {zipInfo && (
+        <div className="download-results container mt-4 text-center">
+          <h4 className="mb-3">Download all parts (ZIP)</h4>
+          <div>
+            <button className="btn btn-success" onClick={() => handleDownload(zipInfo.token, zipInfo.fileName)}>
+              Download ZIP ({zipInfo.fileName})
+            </button>
+          </div>
+        </div>
+      )}
 
       {parts.length > 0 && (
         <div className="download-results container mt-4 text-center">

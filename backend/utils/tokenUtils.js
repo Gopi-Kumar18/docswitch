@@ -7,10 +7,11 @@ dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET || 'default_secret';
 
 export const generateToken = (encodedFilePath, clientIp) => {
+
   return jwt.sign(
     { file: encodedFilePath, ip: clientIp },
     JWT_SECRET,
-    { algorithm: 'HS256', expiresIn: '15m' }
+    { algorithm: 'HS256', expiresIn: '1h' }
   );
 };
 

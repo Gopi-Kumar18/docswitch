@@ -1,10 +1,120 @@
 
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 0;
+  flex-wrap: wrap;
+  gap: 2rem;
+  color: #212529;
+}
+
+.hero-content {
+  flex: 1 1 55%;
+  min-width: 300px;
+}
+
+.hero-content .display-4 {
+  font-weight: 700;
+  font-size: 2.4rem;
+}
+
+
+.hero-content .lead-new {
+  font-size: 1.1rem;
+  color: #495057;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.explore-tools-btn {
+  background-color: transparent;
+  color: #212529;
+  border: 1px solid #212529;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.explore-tools-btn:hover {
+  background-color: #212529;
+  color: white;
+}
+
+.featured-text {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+
+.dark-theme .hero-section {
+  color: white;
+}
+
+.dark-theme .hero-content .lead-new {
+  color: #ccc;
+}
+
+.dark-theme .explore-tools-btn {
+  color: white;
+  border-color: white;
+}
+
+.dark-theme .explore-tools-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.dark-theme .featured-text {
+  color: #aaa;
+}
+
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.try-conversion-btn {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.try-conversion-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(229, 46, 113, 0.4);
+  color: white;
+}
+
+.hero-image {
+  flex: 1 1 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  max-width: 350px;
+  width: 100%;
+  opacity: 0.8;
+  border-radius: 25px;
+}
+
+
+
+
 .card {
   border: none;
   border-radius: 12px;
-  transition: box-shadow 0.3s ease-in-out, 
-              transform 0.2s ease-in-out, 
-              background-color 0.3s ease;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out, background-color 0.3s ease;
   overflow: hidden;
   position: relative;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -34,11 +144,10 @@
   padding-left: 8px;
 }
 
-/* --- Dark Theme Overrides for .card --- */
 .dark-theme .card {
   background-color: #2a2a2a !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: white !important; 
+  color: white !important;
 }
 
 .dark-theme .card:hover {
@@ -60,9 +169,6 @@
   border-color: transparent !important;
 }
 
-/* =================================================================
-   2. HEADER & UTILITY STYLES
-   ================================================================= */
 .conversion-text {
   transition: opacity 0.5s ease;
   font-weight: bold;
@@ -74,14 +180,9 @@
 .fade-out { opacity: 0; }
 .fade-in { opacity: 1; }
 
-/* =================================================================
-   3. THEME & LAYOUT VARIABLES
-   ================================================================= */
 :root {
-  --gap: 3rem;
+  --gap: 2rem;
   --card-radius: 12px;
-
-  /* Day Mode (Default) */
   --bg-card: #f0f8ff;
   --card-border: #e0e8ef;
   --text-primary: #212529;
@@ -94,7 +195,6 @@
 }
 
 .dark-theme {
-  /* Dark Mode Overrides */
   --bg-card: #2a2a2a;
   --card-border: rgba(255, 255, 255, 0.2);
   --text-primary: #ffffff;
@@ -105,36 +205,32 @@
   --shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* =================================================================
-   2. SHARED FEATURE SECTION STYLES
-   ================================================================= */
 .feature-section {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: var(--gap);
-  padding: 2rem 0;
+  padding: 1rem 0; 
   flex-wrap: wrap;
 }
 
-.feature-content-column {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  max-width: 450px;
+.feature-section.first-feature {
+    margin-top: 2rem; 
 }
 
-.feature-heading {
-  margin-bottom: 1.5rem;
-  font-weight: 600;
+.feature-content-column {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
 }
 
 .feature-media-container {
+  flex: 1;
+  max-width: 500px;
   position: relative;
-  max-width: 600px;
-  width: 40%;
+  width: 100%;
   aspect-ratio: 4 / 2.8;
-  flex-grow: 1;
   overflow: hidden;
   border-radius: var(--card-radius);
   box-shadow: var(--shadow);
@@ -146,22 +242,12 @@
   object-fit: cover;
 }
 
-.pdf-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
-}
-.pdf-slide.active {
-  opacity: 1;
+.feature-heading {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
-/* =================================================================
-   3. SHARED FEATURE CARD & BUTTON STYLES
-   ================================================================= */
 .feature-card {
   background-color: var(--bg-card);
   border: 1px solid var(--card-border);
@@ -203,31 +289,34 @@
   transform: translateY(-2px);
 }
 
-/* =================================================================
-   4. RESPONSIVE STYLES (CORRECTED)
-   ================================================================= */
 @media (max-width: 992px) {
+.hero-section {
+flex-direction: column;
+text-align: center;
+}
+.hero-content {
+order: 1; 
+margin-bottom: 2rem; 
+}
+.hero-image {
+order: 2; 
+min-width: 200px;
+}
+.hero-content .lead-new {
+margin-left: auto;
+margin-right: auto;
+}
+
   .feature-section {
-    flex-direction: column;
-  }
-  
-  /* For sections where the CARD comes first in JSX, reverse the order on mobile */
-  /* This puts the media container (image/slider) on TOP */
-  .pdf-section,
-  .ai-section {
     flex-direction: column-reverse;
   }
-  
-  .feature-media-container {
-    width: 80%;
-    margin-bottom: 2rem; /* Adds space below the media element */
-  }
 
-  .feature-content-column {
+  .feature-content-column,
+  .feature-media-container {
     max-width: 80%;
-  }
-  
-  .feature-heading {
-    text-align: center;
+    width: 100%;
   }
 }
+
+
+

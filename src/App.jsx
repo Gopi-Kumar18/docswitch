@@ -14,6 +14,9 @@ import SignUp from './Pages/Signup';
 import Dashboard from './Pages/Dashboard';
 import ForgetPass from './Pages/ForgetPass';
 import ResetPass from './Pages/ResetPass';
+import Features from './Pages/Features.jsx'
+import Developers from './Pages/Developers.jsx';
+import RandomTools from './Pages/DownloadPage.jsx'
 
 import PdfToDocx from './Components/PdfToDocx';
 import DocxToPdf from './Components/DocxToPdf';
@@ -99,6 +102,10 @@ const AppContent = () => {
           <Route path="/forgot-password" element={<ForgetPass />} />
           <Route path="/reset-password/:token" element={<ResetPass />} />
           <Route path="/dashboard" element={ <ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/docswitch-web-developers" element={<Developers />} />
+          <Route path="/random-tools" element={<RandomTools />} />
+
           
            {/* Working - Pages routes */}
           <Route path="/other-pdf-tools" element={<OtherPdfTools />} />

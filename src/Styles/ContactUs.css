@@ -1,8 +1,7 @@
-/* src/pages/ContactUs.css */
-
 .contact-us-page {
   padding: 2rem;
   background-color: #fdfdfd;
+  transition: background-color 0.3s ease;
 }
 
 .contact-us-container {
@@ -13,13 +12,14 @@
   border-radius: 8px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ─── Left column (static info + illustration) ─── */
 .contact-left {
   flex: 1;
   padding: 2rem;
   background-color: #fff8f5;
+  transition: background-color 0.3s ease;
 }
 
 .contact-left h2 {
@@ -62,23 +62,22 @@
   height: auto;
 }
 
-/* ─── Right column (Grievance Box + form) ─── */
 .contact-right {
   flex: 1.2;
   padding: 2rem;
 }
 
-/* “Grievance Box” heading */
+
 .grievance-heading {
   font-size: 1.75rem;
   margin-bottom: 1rem;
-  color: #e53e3e; /* matches the red underline color in your screenshot */
+  color: #e53e3e;
   border-bottom: 2px solid #e53e3e;
   display: inline-block;
   padding-bottom: 0.25rem;
 }
 
-/* Form styling */
+
 .contact-form {
   margin-top: 1rem;
 }
@@ -139,4 +138,48 @@
   margin-top: 1rem;
   color: #38a169;
   font-weight: 500;
+}
+
+.dark-theme .contact-us-page {
+  background-color: #121212;
+}
+
+.dark-theme .contact-us-container {
+  background: #1e1e1e;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+  border: 1px solid #333;
+}
+
+.dark-theme .contact-left {
+  background-color: #2a2a2a;
+}
+
+.dark-theme .contact-left h2,
+.dark-theme .contact-left p,
+.dark-theme .static-contact-info li,
+.dark-theme .form-group label {
+  color: #f1f1f1;
+}
+
+.dark-theme .static-contact-info i {
+  color: #ff6b6b;
+}
+
+.dark-theme .grievance-heading {
+  color: #ff6b6b;
+  border-bottom-color: #ff6b6b;
+}
+
+.dark-theme .submit-group button {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.dark-theme .submit-group button:disabled {
+  background-color: #555;
+  color: #999;
+}
+
+.dark-theme .feedback {
+  color: #68d391;
 }

@@ -7,8 +7,8 @@ export const applyMiddlewares = (app) => {
   app.use(helmet());
 
    app.use(cors({
-    // origin: process.env.CLIENT_ORIGIN,
-    origin: process.env.SECURE_CLIENT_ORIGIN,
+    origin: process.env.CLIENT_ORIGIN,
+    // origin: process.env.SECURE_CLIENT_ORIGIN,
     credentials: true,
   }));
 
@@ -23,7 +23,7 @@ export const applyMiddlewares = (app) => {
   app.use(limiter);
 
   
-  app.set('trust proxy', 1);
+  // app.set('trust proxy', 1);
   app.use(session({
   secret: process.env.SESSION_SECRET, 
   resave: false,

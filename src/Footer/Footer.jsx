@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
           <div className="social-media-links">
             <a
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/in/kartikthokal/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -61,7 +61,7 @@ const Footer = () => {
 
 
             <a
-              href="https://github.com/"
+              href="https://github.com/Gopi-Kumar18"
               target="_blank"
               rel="noopener noreferrer">
               <i className="fab fa-github"></i>

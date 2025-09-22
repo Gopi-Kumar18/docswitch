@@ -13,7 +13,7 @@ const connectDB = async () => {
     const db = mongoose.connection.db;
 
     // Set TTL value expiry
-    const ttlSeconds = 5;
+    const ttlSeconds = 60 * 60;
     const processedFiles = db.collection('processed.files');
 
     // Checking if any existing indexes

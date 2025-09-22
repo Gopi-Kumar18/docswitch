@@ -10,7 +10,7 @@ export const downloadConvertedFile = async (req, res) => {
 
     const decoded = verifyDownloadToken(token, clientIp);
     if (!decoded?.file) {
-      return res.status(401).json({ error: 'Invalid token' });
+      return res.status(401).json({ error: 'Invalid token or File Expired' });
     }
 
     const record = await FileToken.findOne({ token });
