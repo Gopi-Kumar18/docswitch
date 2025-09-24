@@ -4,14 +4,14 @@ import CardData from "../otherComponents/CardData";
 
 import '../Styles/OtherPdfTools.css';
 
-import compressPdf from '../assets/compress-pdf.png';
-import mergePdf from '../assets/merge-1.png';
-import splitPdf from '../assets/split-pdf.png';
-import protectPdf from '../assets/protect_pdf.png';
-import signPdf from '../assets/sign_pdf-1.png';
-import unlockPdf from '../assets/unlock_pdf.png';
-import watermarkPdf from '../assets/watermark-1.png';
-import ocrPdf from '../assets/apply-ocr.png';
+import compressPdf from '../assets/compress-pdf.webp';
+import mergePdf from '../assets/merge-1.webp';
+import splitPdf from '../assets/split-pdf.webp';
+import protectPdf from '../assets/protect_pdf.webp';
+import signPdf from '../assets/sign_pdf-1.webp';
+import unlockPdf from '../assets/unlock_pdf.webp';
+import watermarkPdf from '../assets/watermark-1.webp';
+import ocrPdf from '../assets/apply-ocr.webp';
 
 const OtherPdfTools = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

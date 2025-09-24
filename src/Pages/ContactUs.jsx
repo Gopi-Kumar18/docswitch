@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../Styles/ContactUs.css"; 
-import support from "../assets/support.png";
+import support from "../assets/support.webp";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({

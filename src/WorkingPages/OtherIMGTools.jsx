@@ -5,12 +5,12 @@ import CardData from "../otherComponents/CardData";
 import '../Styles/OtherIMGTools.css';
 
 
-import pngJpg from '../assets/png-jpg-jpg-png.png';
-import pdfToImage from '../assets/pdf-to-image.png';
-import presentationsToImage from '../assets/presentations-to-image.png';
-import excelToImage from '../assets/excel-to-image.png';
-import bmpToImage from '../assets/bmp-to-image.png';
-import wordToImage from '../assets/word-to-image.png';
+import pngJpg from '../assets/png-jpg-jpg-png.webp';
+import pdfToImage from '../assets/pdf-to-image.webp';
+import presentationsToImage from '../assets/presentations-to-image.webp';
+import excelToImage from '../assets/excel-to-image.webp';
+import bmpToImage from '../assets/bmp-to-image.webp';
+import wordToImage from '../assets/word-to-image.webp';
 
 const OtherJpgTools = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

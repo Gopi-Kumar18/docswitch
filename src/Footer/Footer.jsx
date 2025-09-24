@@ -4,7 +4,7 @@ import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../otherComponents/ThemeContext';
 import '../Styles/Footer.css';
-import logo from '../assets/logo-1.png'; 
+import logo from '../assets/logo-1.webp'; 
 
 const Footer = () => {
   const { darkMode } = useContext(ThemeContext);

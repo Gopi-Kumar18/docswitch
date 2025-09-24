@@ -4,10 +4,10 @@ import CardData from "../otherComponents/CardData";
 
 import '../Styles/OtherPdfTools.css';
 
-import mp4Banner from '../assets/mp4-banner.png';
-import mp3Banner from '../assets/mp3-banner.png';
-import mkvBanner from '../assets/mkv-banner.png';
-import gifBanner from '../assets/gif-banner.png';
+import mp4Banner from '../assets/mp4-banner.webp';
+import mp3Banner from '../assets/mp3-banner.webp';
+import mkvBanner from '../assets/mkv-banner.webp';
+import gifBanner from '../assets/gif-banner.webp';
 
 const MultimediaTools = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

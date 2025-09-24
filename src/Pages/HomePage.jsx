@@ -6,11 +6,11 @@ import '../Styles/HomePage.css';
 import CardItem from '../otherComponents/CardItem';
 import CardData from '../otherComponents/CardData';
 
-import pdfIconNeon from '../assets/pdfIconNeon.png';
-import pdfSlide1 from '../assets/pdf-2.png';
-import imgToolkitBanner from '../assets/image-tkit.jpg';
-import multimediaBanner from '../assets/mm-banner.png';
-import aiGeneratorBanner from '../assets/ai-question-gen.png';
+import pdfIconNeon from '../assets/pdf-1.webp';
+import pdfSlide1 from '../assets/pdf-2.webp';
+import imgToolkitBanner from '../assets/image-tkit.webp';
+import multimediaBanner from '../assets/mm-banner.webp';
+import aiGeneratorBanner from '../assets/ai-question-gen.webp';
 
 const conversionTypes = ["PPTX", "PDF", "DOCX", "JPG", "PNG", "COMPRESS", "MERGE", "SPLIT", "WATERMARK", "SIGN"];
 
