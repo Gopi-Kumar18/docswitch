@@ -61,7 +61,7 @@ export const adobeCreatePDF = async (req, res) => {
       clientId:     process.env.PDF_SERVICES_CLIENT_ID,
       clientSecret: process.env.PDF_SERVICES_CLIENT_SECRET
     });
-    const clientConfig = new ClientConfig({ timeout: 60000 });
+    const clientConfig = new ClientConfig({ timeout: 120000 });
     const pdfServices  = new PDFServices({ credentials, clientConfig });
 
     const inputAsset = await pdfServices.upload({
