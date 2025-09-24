@@ -1,12 +1,14 @@
 
 import { jwt } from '../utils/coreModules.js';
 import dotenv from 'dotenv';
+import { normalizeIp } from './ipUtils.js';
 
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET || 'default_secret';
 
 export const generateToken = (encodedFilePath, clientIp) => {
+   const ip = normalizeIp(clientIp || '');
 
   return jwt.sign(
     { file: encodedFilePath, ip: clientIp },
@@ -20,8 +22,10 @@ export const verifyDownloadToken = (token, clientIp) => {
     const decoded = jwt.verify(token, JWT_SECRET, {
       algorithms: ['HS256']
     });
-    if (decoded.ip !== clientIp) return null;
+     if (normalizeIp(decoded.ip) !== normalizeIp(clientIp || '')) return null;
+     console.log('Verifying token', token, 'clientIp:', clientIp);
     return decoded;
+    
   } catch (err) {
     return null;
   }

@@ -5,6 +5,8 @@ import {
 
 } from '../utils/coreModules.js';
 
+import { getClientIpFromReq } from '../utils/ipUtils.js';
+
 import {
   ServicePrincipalCredentials,
   PDFServices,
@@ -89,7 +91,21 @@ export const adobeCreatePDF = async (req, res) => {
       uploadStream.on('error', reject);
     });
 
-    const token = generateToken(uploadStream.id.toString(), req.ip);
+    const clientIp = getClientIpFromReq(req);
+
+    const token = generateToken(uploadStream.id.toString(), clientIp);
+
+    console.log('Token generated for fileId', uploadStream.id.toString(), 'clientIp:', clientIp);
+
+    console.log(
+  'Token generated:',
+  'fileId=', uploadStream.id.toString(),
+  'clientIp=', clientIp,
+  // log only a short prefix of token to avoid recording full JWT in logs
+  'tokenPrefix=', token ? token.slice(0, 12) + '...' : null
+);
+
+
     await FileToken.create({
       token,
       fileId:    uploadStream.id,

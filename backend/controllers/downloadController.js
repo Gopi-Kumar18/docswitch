@@ -2,11 +2,18 @@
 import { gfsProcessed } from '../config/db.js';
 import FileToken from '../models/FileToken.js';
 import { verifyDownloadToken } from '../utils/tokenUtils.js';
+import { getClientIpFromReq } from '../utils/ipUtils.js';
 
 export const downloadConvertedFile = async (req, res) => {
   try {
     const { token } = req.query;
-    const clientIp = req.ip;
+    const clientIp = getClientIpFromReq(req);
+
+     console.log(
+      'Download requested:',
+      'tokenPrefix=', token ? String(token).slice(0, 12) + '...' : null,
+      'clientIp=', clientIp
+    );
 
     const decoded = verifyDownloadToken(token, clientIp);
     if (!decoded?.file) {
