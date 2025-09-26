@@ -1,5 +1,5 @@
 
-import { fileTypeFromFile, crypto, dotenv, axios, FileToken, generateToken, CloudConvert, fs, promisify, gfsProcessed } from '../utils/coreModules.js';
+import { fileTypeFromFile, crypto, dotenv, axios, FileToken, generateToken, CloudConvert, fs, promisify, gfsProcessed, getClientIpFromReq } from '../utils/coreModules.js';
 
 dotenv.config();
 const unlinkAsync = promisify(fs.unlink);
@@ -74,7 +74,8 @@ export const multimediaConverter = async (req, res) => {
       processedStream.on('error', reject);
     });
 
-    const token = generateToken(processedStream.id.toString(), req.ip);
+    const clientIp = getClientIpFromReq(req);
+    const token = generateToken(processedStream.id.toString(), clientIp);
 
     const fileTokenDoc = {
       token,

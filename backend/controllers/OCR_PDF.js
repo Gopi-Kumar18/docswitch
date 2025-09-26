@@ -1,6 +1,6 @@
 import {
   
-  fs,crypto,dotenv,fileTypeFromFile,promisify,FileToken,generateToken,path,gfsProcessed
+  fs,crypto,dotenv,fileTypeFromFile,promisify,FileToken,generateToken,path,gfsProcessed, getClientIpFromReq
 
 } from '../utils/coreModules.js';
 
@@ -70,7 +70,8 @@ export const ocr_pdf = async (req, res) => {
       uploadStream.on('error', reject);
     });
 
-    const token = generateToken(uploadStream.id.toString(), req.ip);
+    const clientIp = getClientIpFromReq(req);
+    const token = generateToken(uploadStream.id.toString(), clientIp);
     await FileToken.create({
       token,
       fileId:    uploadStream.id,

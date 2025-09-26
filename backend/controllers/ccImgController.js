@@ -1,6 +1,6 @@
 import {
 
-  fileTypeFromFile, crypto, dotenv, axios, FileToken, generateToken, CloudConvert, fs, path, promisify, gfsProcessed, allowedMimes
+  fileTypeFromFile, crypto, dotenv, axios, FileToken, generateToken, CloudConvert, fs, path, promisify, gfsProcessed, allowedMimes, getClientIpFromReq
   
 } from '../utils/coreModules.js';
 
@@ -143,7 +143,8 @@ const createConverter = (outputFormat) => {
       });
 
       // 10. Generate secure token for download
-      const token = generateToken(uploadStream.id.toString(), req.ip);
+      const clientIp = getClientIpFromReq(req);
+      const token = generateToken(uploadStream.id.toString(), clientIp);
       await FileToken.create({
         token,
         fileId: uploadStream.id,

@@ -1,6 +1,6 @@
 import {
   
-  fs,path,crypto,dotenv,fileTypeFromFile,promisify,FileToken,generateToken,CloudConvert,gfsProcessed,allowedMimes
+  fs,path,crypto,dotenv,fileTypeFromFile,promisify,FileToken,generateToken,CloudConvert,gfsProcessed,allowedMimes, getClientIpFromReq
 
 } from '../utils/coreModules.js';
 
@@ -91,7 +91,8 @@ export const mergePdfs = async (req, res) => {
       uploadStream.on('error', reject);
     });
 
-    const token = generateToken(uploadStream.id.toString(), req.ip);
+    const clientIp = getClientIpFromReq(req);
+    const token = generateToken(uploadStream.id.toString(), clientIp);
     await FileToken.create({
       token,
       fileId:    uploadStream.id,

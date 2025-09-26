@@ -1,5 +1,5 @@
 import {
-fs, crypto, dotenv, fileTypeFromFile, promisify, FileToken, generateToken, path, gfsProcessed
+fs, crypto, dotenv, fileTypeFromFile, promisify, FileToken, generateToken, path, gfsProcessed, getClientIpFromReq
 } from '../utils/coreModules.js';
 
 import {
@@ -82,7 +82,8 @@ for (let i = 0; i < assets.length; i++) {
   const uploadStream = gfsProcessed.openUploadStream(partName, { contentType: MimeType.PDF });
   await pipeline(fs.createReadStream(tmpPartPath), uploadStream);
 
-  const token = generateToken(uploadStream.id.toString(), req.ip);
+  const clientIp = getClientIpFromReq(req);
+  const token = generateToken(uploadStream.id.toString(), clientIp);
   await FileToken.create({
     token,
     fileId:    uploadStream.id,

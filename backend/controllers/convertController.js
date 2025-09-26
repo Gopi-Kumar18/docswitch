@@ -1,4 +1,4 @@
-import { fileTypeFromFile, crypto, dotenv, axios, FileToken, generateToken, CloudConvert,fs, promisify, gfsProcessed, allowedMimes } from '../utils/coreModules.js';
+import { fileTypeFromFile, crypto, dotenv, axios, FileToken, generateToken, CloudConvert,fs, promisify, gfsProcessed, allowedMimes, getClientIpFromReq } from '../utils/coreModules.js';
 
 dotenv.config();
 const unlinkAsync = promisify(fs.unlink);
@@ -82,7 +82,9 @@ export const convertFile = async (req, res) => {
     });
 
     // 9. Generate and store access token
-    const token = generateToken(processedStream.id.toString(), req.ip);
+
+    const clientIp = getClientIpFromReq(req);
+    const token = generateToken(processedStream.id.toString(), clientIp);
     await FileToken.create({
       token,
       fileId: processedStream.id,

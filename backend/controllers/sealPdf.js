@@ -1,6 +1,6 @@
 
 import {
-  fs, path, crypto, dotenv, fileTypeFromFile, promisify, FileToken, generateToken, gfsProcessed, allowedMimes, PDFDocument
+  fs, path, crypto, dotenv, fileTypeFromFile, promisify, FileToken, generateToken, gfsProcessed, allowedMimes, PDFDocument, getClientIpFromReq
 } from '../utils/coreModules.js';
 
 dotenv.config();
@@ -70,7 +70,8 @@ export const sealPdf = async (req, res) => {
       uploadStream.on('error', reject);
     });
 
-    const token = generateToken(uploadStream.id.toString(), req.ip);
+    const clientIp = getClientIpFromReq(req);
+    const token = generateToken(uploadStream.id.toString(), clientIp);
     await FileToken.create({
       token,
       fileId: uploadStream.id,
