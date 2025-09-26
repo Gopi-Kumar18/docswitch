@@ -5,7 +5,7 @@ import "../Styles/Signup.css";
 import floatingIcons from '../constants/FloatingIcons';
 
 const emailRegex    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$/;
 
 const Login = () => {
   const [email,    setEmail]    = useState('');
