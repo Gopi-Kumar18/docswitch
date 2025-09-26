@@ -32,6 +32,8 @@ import nodemailer from "nodemailer";
 
 import { PDFDocument } from 'pdf-lib';
 
+import { getClientIpFromReq } from '../utils/ipUtils.js';
+import { normalizeIp } from './ipUtils.js';
 
 
 export {
@@ -61,6 +63,9 @@ export {
   MongoStore,
   bcrypt,
   nodemailer,
-  PDFDocument
+  PDFDocument,
+  getClientIpFromReq,
+  normalizeIp
+
   
 };

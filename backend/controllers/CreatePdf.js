@@ -1,22 +1,15 @@
 
 import {
 
-  fs,path,crypto,dotenv,fileTypeFromFile,promisify,FileToken,generateToken,gfsProcessed
+  fs, path, crypto, dotenv, fileTypeFromFile, promisify, FileToken, generateToken, gfsProcessed, getClientIpFromReq
 
 } from '../utils/coreModules.js';
 
-import { getClientIpFromReq } from '../utils/ipUtils.js';
 
-import {
-  ServicePrincipalCredentials,
-  PDFServices,
-  MimeType,
-  CreatePDFJob,
-  CreatePDFResult,
-  SDKError,
-  ServiceUsageError,
-  ServiceApiError,
-  ClientConfig
+import { 
+
+  ServicePrincipalCredentials, PDFServices, MimeType, CreatePDFJob, CreatePDFResult, SDKError, ServiceUsageError, ServiceApiError, ClientConfig
+
 } from '@adobe/pdfservices-node-sdk';
 
 dotenv.config();
@@ -95,16 +88,8 @@ export const adobeCreatePDF = async (req, res) => {
 
     const token = generateToken(uploadStream.id.toString(), clientIp);
 
-    console.log('Token generated for fileId', uploadStream.id.toString(), 'clientIp:', clientIp);
-
-    console.log(
-  'Token generated:',
-  'fileId=', uploadStream.id.toString(),
-  'clientIp=', clientIp,
-  // log only a short prefix of token to avoid recording full JWT in logs
-  'tokenPrefix=', token ? token.slice(0, 12) + '...' : null
-);
-
+    // debug logging...
+    // console.log('Token generated:', 'fileId=', uploadStream.id.toString(), 'clientIp=', clientIp, 'tokenPrefix=', token ? token.slice(0, 12) + '...' : null);
 
     await FileToken.create({
       token,

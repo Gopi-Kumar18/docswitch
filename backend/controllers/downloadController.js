@@ -9,11 +9,9 @@ export const downloadConvertedFile = async (req, res) => {
     const { token } = req.query;
     const clientIp = getClientIpFromReq(req);
 
-     console.log(
-      'Download requested:',
-      'tokenPrefix=', token ? String(token).slice(0, 12) + '...' : null,
-      'clientIp=', clientIp
-    );
+
+    // debug logging...
+    // console.log('Download requested:', 'tokenPrefix=', token ? String(token).slice(0, 12) + '...' : null, 'clientIp=', clientIp);
 
     const decoded = verifyDownloadToken(token, clientIp);
     if (!decoded?.file) {

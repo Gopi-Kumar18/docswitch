@@ -1,7 +1,7 @@
 
-import { jwt } from '../utils/coreModules.js';
+import { jwt, normalizeIp } from '../utils/coreModules.js';
 import dotenv from 'dotenv';
-import { normalizeIp } from './ipUtils.js';
+
 
 dotenv.config();
 
@@ -23,7 +23,7 @@ export const verifyDownloadToken = (token, clientIp) => {
       algorithms: ['HS256']
     });
      if (normalizeIp(decoded.ip) !== normalizeIp(clientIp || '')) return null;
-     console.log('Verifying token', token, 'clientIp:', clientIp);
+    //  console.log('Verifying token', token, 'clientIp:', clientIp); // debug logging
     return decoded;
     
   } catch (err) {
