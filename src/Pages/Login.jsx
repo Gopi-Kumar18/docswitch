@@ -5,7 +5,7 @@ import "../Styles/Signup.css";
 import floatingIcons from '../constants/FloatingIcons';
 
 const emailRegex    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-// const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 
 const Login = () => {
   const [email,    setEmail]    = useState('');
@@ -24,11 +24,11 @@ const Login = () => {
     if (!emailRegex.test(em)) {
       return setError('Email must be a valid gmail.com or hotmail.com address.');
     }
-    // if (!passwordRegex.test(pw)) {
-    //   return setError(
-    //     'Password must be ≥8 chars, include 1 uppercase, 1 lowercase, 1 digit & 1 special.'
-    //   );
-    // }
+    if (!passwordRegex.test(pw)) {
+      return setError(
+        'Password must be ≥8 chars, include 1 uppercase, 1 lowercase, 1 digit & 1 special.'
+      );
+    }
 
     try {
       await login(em, pw);
