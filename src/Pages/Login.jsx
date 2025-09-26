@@ -26,15 +26,18 @@ const Login = () => {
     }
     if (!passwordRegex.test(pw)) {
       return setError(
-        'Password must be ≥8 chars, include 1 uppercase, 1 lowercase, 1 digit & 1 special.'
+        'Password must be ≥6 chars, include 1 uppercase, 1 lowercase, 1 digit & 1 special.'
       );
     }
 
     try {
       await login(em, pw);
       navigate('/');
-    } catch {
-      setError('Login failed. Please check your credentials.');
+    } catch(err) {
+      console.error("Login API Error:", err);
+      // setError('Login failed. Please check your credentials.');
+      const message = err.response?.data?.error || 'Login failed. Please check your credentials.';
+     setError(message);
     }
   };
 
