@@ -7,10 +7,21 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+ 
+  const signup = async (name, email, password) => {
+    await api.post('/api/auth/signup', { name, email, password });
+  };
+
+  const login = async (email, password) => {
+    await api.post('/api/auth/login', { email, password });
+    const res = await api.get('api/user/me');
+    setUser(res.data.user);
+  };
+
+   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await api.get('/user/me');
+        const res = await api.get('/api/user/me');
         setUser(res.data.user);
       } catch (err) {
         setUser(null);
@@ -21,19 +32,10 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
-  const signup = async (name, email, password) => {
-    await api.post('/auth/signup', { name, email, password });
-  };
-
-  const login = async (email, password) => {
-    await api.post('/auth/login', { email, password });
-    const res = await api.get('/user/me');
-    setUser(res.data.user);
-  };
 
  const logout = async () => {
   try {
-    await api.post('/auth/logout');
+    await api.post('/api/auth/logout');
     setUser(null);
   } catch (err) {
     console.error('Logout failed:', err);
@@ -41,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 };
 
 const forgotPassword = async (email) => {
-    return api.post('/auth/forgot-password', { email });
+    return api.post('/api/auth/forgot-password', { email });
   };
 
   return (
