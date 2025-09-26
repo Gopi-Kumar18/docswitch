@@ -30,7 +30,7 @@ const ContactUs = () => {
         enquiryType: "grievance",
         ...formData,
       };
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}`, payload);
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/contact-us`, payload);
       setFeedbackMsg("Your grievance has been submitted successfully!");
       setFormData({
         fullName: "",
