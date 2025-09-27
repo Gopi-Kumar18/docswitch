@@ -1,7 +1,7 @@
 
 import {
 
-  fs,path,crypto,dotenv,fileTypeFromFile,promisify,FileToken,generateToken,gfsProcessed,allowedMimes
+  fs,path,crypto,dotenv,fileTypeFromFile,promisify,FileToken,generateToken,gfsProcessed,allowedMimes, getClientIpFromReq
 
 } from '../utils/coreModules.js';
 
@@ -98,7 +98,8 @@ export const adobeConverter = async (req, res) => {
       uploadStream.on('error', reject);
     });
 
-    const token = generateToken(uploadStream.id.toString(), req.ip);
+    const clientIp = getClientIpFromReq(req.ip)
+    const token = generateToken(uploadStream.id.toString(), clientIp);
     await FileToken.create({
       token,
       fileId:    uploadStream.id,
