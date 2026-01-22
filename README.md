@@ -1,190 +1,192 @@
-**DocSwitch**
+# 🚀 DocSwitch
 
-*DocSwitch* is a powerful, web-based file conversion platform built using the MERN stack and modern DevOps practices. Convert documents and images between a variety of formats—PDF, Word, PowerPoint, Excel, CSV, BMP, PNG, JPG—and more & more, all with a simple drag-and-drop interface.
+DocSwitch is a powerful, web-based **file conversion platform** built using the **MERN stack** and modern **DevOps practices**. It allows users to convert documents and images across multiple formats with a clean **drag-and-drop interface**, secure temporary storage, and production-grade scalability.
 
+---
 
-🚀 Key Features
+## 🌟 Overview
 
-Universal File Conversion: Convert between common document and image formats:
+DocSwitch is designed to be fast, secure, and highly scalable. It integrates industry-grade APIs like **Adobe PDF Services** and **CloudConvert**, supports automated cleanup of temporary files, and uses **token-based downloads** to ensure security.
 
-**(Document Conversion's)**
+Whether you’re converting a single document or handling multi-page outputs, DocSwitch provides a smooth and reliable experience.
 
-PDF ↔ Word 
+---
 
-Word → PDF
+## ✨ Key Features
 
-PowerPoint → PDF
+### 📄 Document Conversions
 
-PDF → Powerpoint
+* PDF ↔ Word
+* Word → PDF
+* PowerPoint → PDF
+* PDF → PowerPoint
+* Excel (XLS / XLSX / CSV / XLSM) → CSV
+* PDF → Excel
+* Split, Compress, Merge, Create, OCR, Secure & Unlock PDF
 
-Excel (XLS/XLSX/CSV/XLSM) → CSV
+### 🖼️ Image Conversions
 
-PDF → Excel
+* PDF ↔ Image (JPG, PNG)
+* Word (DOC / DOCX) → Image
+* PowerPoint (PPT / PPTX) → Image
+* Excel (XLS / XLSX / CSV / XLSM) → Image
+* BMP ↔ JPG / PNG
+* PNG ↔ JPG
 
-Split PDF
+### 🚀 Unique Capabilities
 
-Compress PDF
+* **AI Question Generator** – Uses the Gemini API to generate questions from document context
+* **Multi-Page Handling** – Automatically bundles multiple outputs into a ZIP archive
+* **Secure Temporary Storage** – Files stored in MongoDB and served via expiring download tokens
+* **Auto Cleanup** – Converted files are automatically deleted after expiration
+* **Scalable APIs** – Powered by Adobe PDF Services and CloudConvert
+* **Responsive UI** – Modern React interface with progress indicators
 
-Merge PDF
+---
 
-Create PDF
+## 🛠️ Tech Stack
 
-OCR PDF
+### Full Stack Development
 
-Secure PDF
+* **Frontend:** React, Bootstrap, React Router, CSS
+* **Backend:** Node.js, Express, MongoDB, Mongoose
+* **File Conversion APIs:** Adobe PDF Services, CloudConvert
 
-Unlock PDF
+### DevOps & Infrastructure
 
+* **Version Control:** Git & GitHub (branching strategy like `ds-feax` for safe integration)
+* **Containerization:** Docker (multi-stage builds for lightweight production images)
+* **Web Server:** Nginx (serves React build & handles routing)
+* **CI/CD:** Jenkins (automated pipelines for build & deployment)
+* **Container Registry:** Docker Hub
+* **Deployment Platform:** Render (container-based web services)
+* **Database:** MongoDB
 
-**(Image Conversions)**
+---
 
-PDF ↔ Image (JPG, PNG)
+## 🚢 DevOps Architecture & Deployment
 
-Word (DOC/DOCX) → Image
+DocSwitch follows a fully automated **CI/CD pipeline** ensuring zero-downtime deployments.
 
-PowerPoint (PPT/PPTX) → Image
+### 🔄 CI/CD Workflow
 
-Excel (XLS/XLSX/CSV/XLSM) → Image
+1. **Code Commit** – Changes pushed to GitHub (e.g., `ds-feax` branch)
+2. **Jenkins Trigger** – Pipeline automatically starts
+3. **Build Phase**
 
-BMP ↔ JPG/PNG
+   * Pull latest code
+   * Build separate Docker images for frontend (Nginx) & backend (Node.js)
+   * Inject production environment variables via build args
+4. **Push to Docker Hub** – Images are versioned and published
+5. **Deployment** – Jenkins triggers Render webhook to pull and deploy the latest images
 
-PNG ↔ JPG
+---
 
+## ⚙️ Installation & Setup (Local Development)
 
-**(Unique Feature)**
+### 📥 Clone Repository
 
-AI-Question Generator(using Gemini API)
-
-Multi-Page Support: Automatically ZIP multiple page outputs into a single archive.
-
-Secure Temporary Storage: Files are stored in MongoDB temporary, served via expiring tokens, and deleted after conversion.
-
-Scalable APIs: Powered by "Adobe PDF Services", "CloudConvert" for high-quality, reliable conversions.
-
-Responsive UI: React front-end with drag-and-drop and live progress indicators.
-
-🛠️ Tech Stack
-
-Frontend: React, Bootstrap, React Router, css
-
-Backend: Node.js, Express, MongoDB
-
-File Conversion: Adobe PDF Services, CloudConvert API
-
-DevOps:
-
-Version Control: Git & GitHub
-
-Containerization: Docker & Docker Compose(will be there..)
-
-CI/CD: Jenkins pipelines for automated testing, build, and deployment(will be there..)
-
-Environment: .env configuration for secrets and API keys
-
-⚙️ Installation & Setup
-
-Clone the repository
-
+```bash
 git clone https://github.com/Gopi-Kumar18/DocSwitch.git
 cd DocSwitch
+```
 
-Environment Variables
-Copy .env.example to .env and fill in your:
+### 🔐 Environment Variables
 
-MONGODB_URI
+Copy `.env.example` to `.env` and configure the following:
 
-ADOBE_PDF_CLIENT_SECRET & ID
+* `MONGODB_URI`
+* `ADOBE_PDF_CLIENT_ID`
+* `ADOBE_PDF_CLIENT_SECRET`
+* `CLOUDCONVERT_API_KEY`
+* `JWT_SECRET`
 
-CLOUDCONVERT_API_KEY
+### 🧩 Backend Setup
 
-JWT_SECRET
-
-Other optional settings
-
-Backend
-
+```bash
 cd backend
 npm install
 nodemon server.js
+```
 
-Frontend
+### 🎨 Frontend Setup
 
+```bash
 cd DocSwitch
 npm install
 npm run dev
+```
 
-Access the App
-Open your browser to http://localhost:5173 for React and http://localhost:3000 for the backend.
+### 🌐 Access the Application
 
-📝 Usage
+* **Frontend:** [http://localhost:5173](http://localhost:5173)
+* **Backend:** [http://localhost:3000](http://localhost:3000)
 
-Navigate to the All Tools page (/other-img-tools)&&(/other-pdf-tools)  to see available converters.
+---
 
-Choose a converter card (e.g., PDF to Image) and click Generate.
+## 🧑‍💻 Usage Guide
 
-Drag & drop or click to upload your file.
+1. Navigate to **All Tools** (`/other-img-tools` or `/other-pdf-tools`)
+2. Select a conversion tool (e.g., PDF to Image)
+3. Upload your file via drag & drop or file picker
+4. Choose output format
+5. Click **Convert**
+6. Download the converted file or ZIP archive
 
-Select the desired output format (JPG or PNG).
+---
 
-Click Convert and download your converted file. If multiple pages, download the ZIP or Share the download link.
+## 📸 Live Project Demo
 
+### 1️⃣ Sign Up Page
 
-**Live Project Demo Images:** 
+![Signup](https://github.com/user-attachments/assets/23842e84-ad68-4e6d-8686-49be1ff84671)
 
-1.) SignUp Page:
+### 2️⃣ Login Page
 
-<img width="1916" height="874" alt="image" src="https://github.com/user-attachments/assets/23842e84-ad68-4e6d-8686-49be1ff84671" />
+![Login](https://github.com/user-attachments/assets/be9fd3ef-05e3-4688-b2b8-4528ae223617)
 
+### 3️⃣ Home Page
 
-2.) Login Page:
+![Home](https://github.com/user-attachments/assets/a93b6226-9e43-4cfd-b91d-f321591fc72c)
 
-<img width="1913" height="882" alt="image" src="https://github.com/user-attachments/assets/be9fd3ef-05e3-4688-b2b8-4528ae223617" />
+### 4️⃣ Conversion Page
 
+![Conversion](https://github.com/user-attachments/assets/43d18d43-7219-455e-b9d9-8bf2b64fe4c6)
 
-3.) Homepage:
+### 5️⃣ Download Page
 
-<img width="1893" height="869" alt="image" src="https://github.com/user-attachments/assets/a93b6226-9e43-4cfd-b91d-f321591fc72c" />
+![Download](https://github.com/user-attachments/assets/dfbb584d-9d2e-4955-90b2-efc9522efe92)
 
+### 6️⃣ AI Question Generator
 
-4.) Conversion Page:
+![AI Generator](https://github.com/user-attachments/assets/ab05db5b-84d5-4e87-ad93-6c10aa1eb804)
 
-<img width="1919" height="797" alt="image" src="https://github.com/user-attachments/assets/43d18d43-7219-455e-b9d9-8bf2b64fe4c6" />
+---
 
+## 🤝 Contributing
 
-5.) Download Page:
+Contributions are welcome!
 
-<img width="1912" height="703" alt="image" src="https://github.com/user-attachments/assets/dfbb584d-9d2e-4955-90b2-efc9522efe92" />
+1. Fork the repository
+2. Create a feature branch
 
+   ```bash
+   git checkout -b feature/YourFeature
+   ```
+3. Commit your changes
 
-6.) Ai-Question Generator:
+   ```bash
+   git commit -m "Add feature"
+   ```
+4. Push to GitHub
 
-<img width="1095" height="880" alt="image" src="https://github.com/user-attachments/assets/ab05db5b-84d5-4e87-ad93-6c10aa1eb804" />
+   ```bash
+   git push origin feature/YourFeature
+   ```
+5. Open a Pull Request
 
+---
 
+## 📄 License
 
-
-
-👥 Contributing
-
-Contributions are welcome! Feel free to:
-
-📖 Improve documentation
-
-🐞 Report issues or request features
-
-✨ Submit pull requests
-
-Fork the repo
-
-Create a feature branch (git checkout -b feature/YourFeature)
-
-Commit your changes (git commit -m 'Add feature')
-
-Push to branch (git push origin feature/YourFeature)
-
-Open a pull request
-
-📄 License
-
-Built with ❤️ by Gopi-Kumar18
-
+Built with ❤️ by **Gopi-Kumar18**
